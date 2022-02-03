@@ -1,3 +1,14 @@
 <h1>{{ storeName }}</h1>
 <img [src]="storeLogo" [style.width]="'100px'" alt="" />
-<h3>We offer an explicit discount of: {{ discount }}</h3>
+
+<div *ngIf="discount != 'No Discount'; then offer"></div>
+<ng-template #offer>
+  <h3>We offer an explicit discount of: {{ discount }}</h3>
+</ng-template>
+
+<select>
+  <option value="default">Choose Category</option>
+  <option *ngFor="let category of categoryList" [value]="category">
+    {{ category.name }}
+  </option>
+</select>

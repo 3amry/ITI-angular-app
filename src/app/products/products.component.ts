@@ -58,7 +58,7 @@ export class ProductsComponent implements OnInit {
         name: 'TVs',
       },
     ];
-    this.clientName = 'cl-1';
+    this.clientName = 'client';
     this.isPurchased = false;
   }
   ngOnInit(): void {}

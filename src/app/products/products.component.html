@@ -12,3 +12,16 @@
     {{ category.name }}
   </option>
 </select>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+  </tr>
+  <tr *ngFor="let product of productList">
+    <td>{{ product.name }}</td>
+    <td>{{ product.price | currency }}</td>
+    <td>{{ product.quantity }}</td>
+  </tr>
+</table>

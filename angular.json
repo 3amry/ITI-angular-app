@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ITI-app": {
+    "ITI-angular-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ITI-app:build:production"
+              "browserTarget": "ITI-angular-app:build:production"
             },
             "development": {
-              "browserTarget": "ITI-app:build:development"
+              "browserTarget": "ITI-angular-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ITI-app:build"
+            "browserTarget": "ITI-angular-app:build"
           }
         },
         "test": {
@@ -100,5 +100,5 @@
       }
     }
   },
-  "defaultProject": "ITI-app"
+  "defaultProject": "ITI-angular-app"
 }

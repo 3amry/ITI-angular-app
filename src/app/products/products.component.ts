@@ -61,5 +61,8 @@ export class ProductsComponent implements OnInit {
     this.clientName = 'client';
     this.isPurchased = false;
   }
+  buy() {
+    this.isPurchased = !this.isPurchased;
+  }
   ngOnInit(): void {}
 }

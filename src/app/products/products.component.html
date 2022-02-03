@@ -13,18 +13,27 @@
   </option>
 </select>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Quantity</th>
-  </tr>
-  <tr *ngFor="let product of productList">
-    <td>{{ product.name }}</td>
-    <td>{{ product.price | currency }}</td>
-    <td>{{ product.quantity }}</td>
-  </tr>
-</table>
-
 <input type="text" [(ngModel)]="clientName" /><br />
 <span>Client Name: {{ clientName }} </span>
+
+<br />
+<button (click)="buy()">Buy</button>
+
+<div *ngIf="isPurchased; then purchaseMsg; else cartMsg"></div>
+<ng-template #purchaseMsg>
+  Thanks for purchasing from our Store {{ clientName }}
+</ng-template>
+<ng-template #cartMsg>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let product of productList">
+      <td>{{ product.name }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </table>
+</ng-template>

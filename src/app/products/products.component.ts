@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscountOffers } from '../shared-classes-and-types/DiscountOffers ';
 import { ICategory } from '../shared-classes-and-types/ICategory';
 import { IProducts } from '../shared-classes-and-types/IProducts';
+import { ProductService } from '../Services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -9,41 +10,19 @@ import { IProducts } from '../shared-classes-and-types/IProducts';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  discount: DiscountOffers;
-  storeName: string;
-  storeLogo: string;
-  productList: IProducts[];
-  categoryList: ICategory[];
-  clientName: string;
-  isPurchased: boolean;
+  discount!: DiscountOffers;
+  storeName!: string;
+  storeLogo!: string;
+  productList!: IProducts[];
+  categoryList!: ICategory[];
+  clientName!: string;
+  isPurchased!: boolean;
 
-  constructor() {
+  constructor(private productService: ProductService) {
     this.discount = DiscountOffers.tenPercent;
     this.storeName = 'market';
     this.storeLogo = '../../assets/logo.png';
-    this.productList = [
-      {
-        id: 1,
-        name: 'T-shirt',
-        quantity: 10,
-        price: 500_000,
-        img: 'img1',
-      },
-      {
-        id: 2,
-        name: 'Pants',
-        quantity: 10,
-        price: 800_000,
-        img: 'img1',
-      },
-      {
-        id: 3,
-        name: 'Whatch',
-        quantity: 10,
-        price: 1_000_000,
-        img: 'img1',
-      },
-    ];
+    // this.productList: any = []
     this.categoryList = [
       {
         id: 1,
@@ -63,6 +42,9 @@ export class ProductsComponent implements OnInit {
   }
   buy() {
     this.isPurchased = !this.isPurchased;
+  }
+  renderValues(): any {
+    this.productList = this.productService.getAllProducts();
   }
   ngOnInit(): void {}
 }

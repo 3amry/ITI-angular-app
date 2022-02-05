@@ -10,10 +10,10 @@ export class ProductService {
     { id: 3, name: 'Whatch', quantity: 10, price: 1_000_000, img: 'img1' },
   ];
   constructor() {}
-  getAllProducts() {
+  getAllProducts(): any {
     return this.products;
   }
-  getProductById(id: number) {
+  getProductById(id: number): any {
     if (isNaN(id)) null;
     const product = this.products.find((p) => (p.id = id));
     if (!product) null;

@@ -3,6 +3,7 @@ import { DiscountOffers } from '../shared-classes-and-types/DiscountOffers ';
 import { ICategory } from '../shared-classes-and-types/ICategory';
 import { IProducts } from '../shared-classes-and-types/IProducts';
 import { ProductService } from '../Services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,11 @@ export class ProductsComponent implements OnInit {
   clientName!: string;
   isPurchased!: boolean;
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
     this.discount = DiscountOffers.tenPercent;
     this.storeName = 'market';
     this.storeLogo = '../../assets/logo.png';
@@ -45,6 +50,14 @@ export class ProductsComponent implements OnInit {
   }
   renderValues(): any {
     this.productList = this.productService.getAllProducts();
+  }
+  goDiscount(): any {
+    this.router.navigate(['discounted'], { relativeTo: this.activatedRoute });
+  }
+  goNoDiscount(): any {
+    this.router.navigate(['notDiscounted'], {
+      relativeTo: this.activatedRoute,
+    });
   }
   ngOnInit(): void {}
 }

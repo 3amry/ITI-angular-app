@@ -1,33 +1,142 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-    />
-    <label for="user">User Name</label>
-    <input type="text" class="form-control" id="user" required />
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" />
-    <label for="exampleInputPassword2">Confirm Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword2" />
-  </div>
-  <div class="col-md-3 mb-3">
-    <label for="validationTooltip04">Where did you hear about us!</label>
-    <select class="custom-select" id="validationTooltip04" required>
-      <option selected disabled value="">Choose...</option>
-      <option>Facebook</option>
-      <option>Twitter</option>
-      <option>Google</option>
-    </select>
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Register</button>
-</form>
+<div class="container">
+  <form #regForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        [(ngModel)]="userModel.email"
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        required
+        ngModel
+        name="mail"
+        #mail="ngModel"
+        pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+        [class.is-invalid]="mail.invalid && mail.touched"
+      />
+      <div *ngIf="mail.errors && mail.touched">
+        <small
+          *ngIf="mail.errors['required']"
+          class="form-text text-danger"
+          [class.d-none]="mail.valid || mail.untouched"
+          >Name is required</small
+        >
+        <small *ngIf="mail.errors['pattern']" class="form-text text-danger"
+          >Must be a valid email</small
+        >
+      </div>
+
+      <label for="user">User Name</label>
+      <input
+        [(ngModel)]="userModel.user"
+        type="text"
+        class="form-control"
+        id="user"
+        required
+        ngModel
+        name="user"
+        #user="ngModel"
+        pattern="^[A-Za-z]*$"
+        [class.is-invalid]="user.invalid && user.touched"
+      />
+      <div *ngIf="user.errors && user.touched">
+        <small
+          *ngIf="user.errors['required']"
+          class="form-text text-danger"
+          [class.d-none]="user.valid || user.untouched"
+          >User Name is required</small
+        >
+        <small *ngIf="user.errors['pattern']" class="form-text text-danger"
+          >Only capital and small characters are allowed</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        [(ngModel)]="userModel.pass"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        required
+        ngModel
+        name="pass"
+        #pass="ngModel"
+        pattern=".{6,20}"
+        [class.is-invalid]="pass.invalid && pass.touched"
+      />
+      <div *ngIf="pass.errors">
+        <small
+          *ngIf="pass.errors['required']"
+          class="form-text text-danger"
+          [class.d-none]="pass.valid || pass.untouched"
+          >Password is required</small
+        >
+        <small
+          *ngIf="pass.errors['pattern']"
+          class="form-text text-danger"
+          [class.d-none]="pass.valid || pass.untouched"
+          >Password must be 6 characters or more
+        </small>
+      </div>
+
+      <label for="exampleInputPassword2">Confirm Password</label>
+      <input
+        [(ngModel)]="userModel.conPass"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword2"
+        required
+        ngModel
+        name="conPass"
+        #conPass="ngModel"
+      />
+      <small
+        *ngIf="pass.value != conPass.value"
+        class="form-text text-danger"
+        [class.d-none]="pass == conPass || conPass.untouched"
+        >Confirm Your Password</small
+      >
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Where did you hear about us!</label>
+      <select
+        [(ngModel)]="userModel.platformSelection"
+        class="custom-select"
+        id="validationTooltip04"
+        required
+        ngModel
+        name="ddlPlatform"
+      >
+        <option selected disabled value="">Choose...</option>
+        <option>Facebook</option>
+        <option>Twitter</option>
+        <option>Google</option>
+      </select>
+    </div>
+    <div class="form-group form-check">
+      <input
+        [(ngModel)]="userModel.chkOffers"
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        ngModel
+        name="chkOfferes"
+      />
+      <label class="form-check-label" for="exampleCheck1"
+        >Send me new offers.</label
+      >
+      <small id="emailHelp" class="form-text text-muted"
+        >(No spam, No BS!)</small
+      >
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="regForm.invalid || pass.value != conPass.value"
+    >
+      Register
+    </button>
+  </form>
+</div>

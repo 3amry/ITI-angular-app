@@ -1,0 +1,77 @@
+<div class="container">
+  <form [formGroup]="noteForm">
+    <div class="form-group">
+      <label for="user">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user"
+        required
+        formControlName="name"
+        [class.is-invalid]="
+          noteForm.get('name')?.invalid && noteForm.get('name')?.touched
+        "
+      />
+      <div *ngIf="name?.invalid && name?.touched">
+        <small *ngIf="name?.errors?.['required']" class="form-text text-danger"
+          >Name is required</small
+        >
+        <small
+          *ngIf="name?.errors?.['forbiddenName']"
+          class="form-text text-danger"
+          >{{name?.errors?.['forbiddenName'].value}} is not allowed</small
+        >
+      </div>
+    </div>
+    <div class="form-group col-md-3 mb-3">
+      <label for="validationTooltip04">Products you want</label>
+      <select
+        class="custom-select"
+        id="validationTooltip04"
+        required
+        formControlName="ddlProducts"
+      >
+        <option selected disabled value="">Choose...</option>
+        <option>T-shirt</option>
+        <option>Pants</option>
+        <option>Whatch</option>
+      </select>
+    </div>
+    <div class="form-group form-check">
+      <input
+        (click)="setDiscountValidation()"
+        type="checkbox"
+        formControlName="hasDisocunt"
+        class="form-check-input"
+        id="exampleCheck1"
+      />
+      <label class="form-check-label" for="exampleCheck1"
+        >Does this product has discount</label
+      >
+      <br /><br />
+      <div class="form-group" [class.d-none]="!hasDisocunt">
+        <label for="discount">Write discount value in percent %</label>
+        <input
+          type="text"
+          class="form-control"
+          id="discount"
+          formControlName="discount"
+          [class.is-invalid]="discount?.invalid && discount?.touched"
+        />
+        <small
+          *ngIf="discount?.errors?.['required']"
+          class="form-text text-danger"
+          >Discount value is required</small
+        >
+      </div>
+    </div>
+    <div
+      formArrayName="comments"
+      *ngFor="let comment of comments?.controls; let i = index"
+    >
+      <label for="i"> {{ "Comment #" }}{{ i + 1 }} </label>
+      <input type="i" [formControlName]="i" class="form-control" />
+    </div>
+    <button (click)="addComment()" class="btn btn-success">Add Comment</button>
+  </form>
+</div>

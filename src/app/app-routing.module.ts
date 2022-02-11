@@ -1,3 +1,6 @@
+import { NotesComponent } from './notes/notes.component';
+import { ReLoginComponent } from './re-login/re-login.component';
+import { ReRegisterComponent } from './re-register/re-register.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NotDiscountedComponent } from './products/not-discounted/not-discounted.component';
@@ -11,6 +14,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: 'Notes', component: NotesComponent },
+  { path: 'Re-Register', component: ReRegisterComponent },
+  { path: 'Re-Login', component: ReLoginComponent },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   { path: '', redirectTo: 'Home', pathMatch: 'full' },

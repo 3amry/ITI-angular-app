@@ -1,0 +1,82 @@
+<div class="container">
+  <form [formGroup]="regForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        required
+        formControlName="email"
+      />
+      <div *ngIf="email?.invalid && email?.touched">
+        <small *ngIf="email?.errors?.['required']" class="form-text text-danger"
+          >Email is required</small
+        >
+        <small *ngIf="email?.errors?.['pattern']" class="form-text text-danger"
+          >Must be a valid email</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="user">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="user"
+        required
+        formControlName="userName"
+        [class.is-invalid]="
+          regForm.get('userName')?.invalid && regForm.get('userName')?.touched
+        "
+      />
+      <div *ngIf="userName?.invalid && userName?.touched">
+        <small
+          *ngIf="userName?.errors?.['required']"
+          class="form-text text-danger"
+          >User Name is required</small
+        >
+        <small
+          *ngIf="userName?.errors?.['pattern']"
+          class="form-text text-danger"
+          >Only capital and small characters are allowed</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        required
+        formControlName="pass"
+      />
+      <div *ngIf="pass?.invalid && pass?.touched">
+        <small *ngIf="pass?.errors?.['required']" class="form-text text-danger"
+          >Password is required</small
+        >
+        <small *ngIf="pass?.errors?.['pattern']" class="form-text text-danger"
+          >Password must be 6 characters or more
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputPassword2">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword2"
+          required
+          formControlName="conPass"
+        />
+        <small
+          *ngIf="regForm.errors?.['misMatch']"
+          class="form-text text-danger"
+          >Please Confirm Password</small
+        >
+      </div>
+    </div>
+  </form>
+</div>

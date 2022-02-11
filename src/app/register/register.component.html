@@ -20,7 +20,7 @@
           *ngIf="mail.errors['required']"
           class="form-text text-danger"
           [class.d-none]="mail.valid || mail.untouched"
-          >Name is required</small
+          >Email is required</small
         >
         <small *ngIf="mail.errors['pattern']" class="form-text text-danger"
           >Must be a valid email</small
@@ -96,7 +96,7 @@
         *ngIf="pass.value != conPass.value"
         class="form-text text-danger"
         [class.d-none]="pass == conPass || conPass.untouched"
-        >Confirm Your Password</small
+        >Please Confirm Password</small
       >
     </div>
     <div class="col-md-3 mb-3">

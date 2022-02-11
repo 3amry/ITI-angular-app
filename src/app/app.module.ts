@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
@@ -16,6 +16,9 @@ import { DiscountedComponent } from './products/discounted/discounted.component'
 import { NotDiscountedComponent } from './products/not-discounted/not-discounted.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ReRegisterComponent } from './re-register/re-register.component';
+import { ReLoginComponent } from './re-login/re-login.component';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +34,17 @@ import { RegisterComponent } from './register/register.component';
     NotDiscountedComponent,
     LoginComponent,
     RegisterComponent,
+    ReRegisterComponent,
+    ReLoginComponent,
+    NotesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
